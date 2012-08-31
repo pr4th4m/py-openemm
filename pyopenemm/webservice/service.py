@@ -5,8 +5,6 @@
 Method which are provided by OpenEMM
 """
 
-# import ipdb
-
 class OpenEMM(object):
     """ Class to manupilate with OpenEmm methods """
 
@@ -48,3 +46,24 @@ class OpenEMM(object):
             customer_dict = {}
 
         return customer_dict
+
+    def add_subscriber(self,user_dict,double_check,key_column,overwrite):
+        """ Method to add new subscriber
+        args :
+            user_dict = Dictionary containing user information
+            double_check - If True, check if subscriber is already in database
+            key_column - column used for double_check
+            overwrite - If True, subscriber gets updated
+        returns : subscriber id
+        """
+        try :
+            subscriber_label , subscriber_value = zip(*user_dict.items()) # unzip for values
+            subscriber_label = { 'x' : subscriber_label } # get in StringArrayType format as openemm expects
+            subscriber_value = { 'x' : subscriber_value } # get in StringArrayType format as openemm expects
+            customer_id = self.client.service.addSubscriber(self.username,self.password,double_check,
+                    key_column,overwrite,subscriber_label,subscriber_value)
+        except Exception, e :
+            # TODO : use logger instead
+            customer_id = 0
+
+        return customer_id
