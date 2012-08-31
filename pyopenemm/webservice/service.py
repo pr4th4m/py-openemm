@@ -5,17 +5,22 @@
 Method which are provided by OpenEMM
 """
 
+# python imports
+
+# project imports
+from pyopenemm.config import WEBSERVICE_USER, WEBSERVICE_PASSWORD
+
+
 class OpenEMM(object):
     """ Class to manupilate with OpenEmm methods """
 
-    def __init__(self, client, username, password):
+    def __init__(self, client):
         """ Constructor for OpenEmm
         args : suds client, openemm username, openemm password
         """
         self.client = client # python suds client
-        self.username = username # openemm username
-        self.password = password # openemm password
-
+        self.username = WEBSERVICE_USER # openemm webservice username
+        self.password = WEBSERVICE_PASSWORD # openemm webservice password
 
     def find_subscriber(self,search):
         """ Method to find openemm subscriber
