@@ -24,5 +24,6 @@ def create_connection():
         client = Client(OPENEMM_URL)
     except Exception, e :
         pass
+        # TODO : add logger here
 
     return client # return suds client
