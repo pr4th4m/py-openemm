@@ -5,6 +5,7 @@
 Method which are provided by OpenEMM
 """
 
+# import ipdb
 
 class OpenEMM(object):
     """ Class to manupilate with OpenEmm methods """
@@ -33,3 +34,17 @@ class OpenEMM(object):
             customer_id = 0
 
         return customer_id
+
+    def get_subscriber(self,subscriber_id):
+        """ Method to get subscriber with id
+        args : id
+        returns : dict of subscriber info
+        """
+        try :
+            customer = self.client.service.getSubscriber(self.username,self.password,subscriber_id)
+            customer_dict = dict(zip(customer.paramNames.x,customer.paramValues.x))
+        except Exception, e:
+            # TODO : logger needs to be used
+            customer_dict = {}
+
+        return customer_dict
