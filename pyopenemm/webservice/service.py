@@ -72,3 +72,16 @@ class OpenEMM(object):
             customer_id = 0
 
         return customer_id
+
+    def delete_subscriber(self,subscriber_id):
+        """ Method to delete subscriber with id
+        args : id
+        returns : 1 for success and 0 for failure
+        """
+        try :
+            customer_id = self.client.service.deleteSubscriber(self.username,self.password,subscriber_id)
+        except Exception, e:
+            # TODO : logger needs to be used
+            customer_id = 0
+
+        return customer_id
